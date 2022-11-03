@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/dictionaryFragment">
+
+    <fragment
+        android:id="@+id/dictionaryFragment"
+        android:name="com.example.lsm.Dictionary"
+        android:label="fragment_dictionary"
+        tools:layout="@layout/fragment_dictionary" >
+        <action
+            android:id="@+id/action_dictionaryFragment_to_palabrasFragment"
+            app:destination="@id/palabrasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/palabrasFragment"
+        android:name="com.example.lsm.palabras"
+        android:label="fragment_palabras"
+        tools:layout="@layout/fragment_palabras" >
+        <action
+            android:id="@+id/action_palabrasFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.lsm.login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/evaluacionFragment"
+        android:name="com.example.lsm.Evaluacion"
+        android:label="fragment_evaluacion"
+        tools:layout="@layout/fragment_evaluacion" >
+        <action
+            android:id="@+id/action_evaluacionFragment_to_preguntasFragment"
+            app:destination="@id/preguntasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.example.lsm.preferencesFragment"
+        android:label="fragment_preferences"
+        tools:layout="@layout/fragment_preferences" />
+    <fragment
+        android:id="@+id/juegoFragment"
+        android:name="com.example.lsm.juegoFragment"
+        android:label="fragment_juego"
+        tools:layout="@layout/fragment_juego" />
+    <fragment
+        android:id="@+id/preguntasFragment"
+        android:name="com.example.lsm.preguntasFragment"
+        android:label="fragment_preguntas"
+        tools:layout="@layout/fragment_preguntas" />
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.example.lsm.videoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" />
+</navigation>

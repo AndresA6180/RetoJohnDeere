@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Title for the application
+-->
+<resources>
+    <string name="page_title">LSM</string>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+<group
+android:id="@+id/group1Drawer"
+    >
+    <item
+
+        android:id="@+id/menuSubtitleDrawer"
+        android:title="Menú"
+        android:enabled="false"
+        />
+    </group>
+
+<group
+android:id="@+id/group2Drawer"
+android:checkableBehavior="single">
+    <item
+
+        android:id="@+id/separator"
+        android:title=""
+        >
+    <menu>
+
+        <item
+            android:id="@+id/dicionarioMenuItem"
+            android:icon="@drawable/diccionario"
+            android:title="Diccionario"
+            />
+
+        <item
+            android:id="@+id/loginMenuItem"
+            android:icon="@drawable/login"
+            android:title="Login" />
+
+        <item
+            android:id="@+id/juegoMenuItem"
+            android:icon="@drawable/videojuego"
+            android:title="Juego" />
+
+        <item
+            android:id="@+id/evaluacionMenuItem"
+            android:icon="@drawable/quiz"
+            android:title="Evaluacion" />
+
+        <item
+            android:id="@+id/preferenciasMenuItem"
+            android:icon="@drawable/settings"
+            android:title="Preferencias" />
+
+
+
+    </menu>
+</item>
+</group>
+
+    </menu>
