@@ -30,6 +30,7 @@ class adapterSubCategorias (var context: Context, var data: List<PalabrasRV>, pr
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.binding.apply {
+
             textViewPalabras.text = data[position].nombre
         }
 

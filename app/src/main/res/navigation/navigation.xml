@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_palabrasFragment_to_videoFragment"
             app:destination="@id/videoFragment" />
+        <action
+            android:id="@+id/action_palabrasFragment_to_dictionaryFragment"
+            app:destination="@id/dictionaryFragment" />
+        <action
+            android:id="@+id/action_palabrasFragment_to_imagenFragment"
+            app:destination="@id/imagenFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -56,5 +62,18 @@
         android:id="@+id/videoFragment"
         android:name="com.example.lsm.videoFragment"
         android:label="fragment_video"
-        tools:layout="@layout/fragment_video" />
+        tools:layout="@layout/fragment_video" >
+        <action
+            android:id="@+id/action_videoFragment_to_palabrasFragment"
+            app:destination="@id/palabrasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagenFragment"
+        android:name="com.example.lsm.imagenFragment"
+        android:label="fragment_imagen"
+        tools:layout="@layout/fragment_imagen" >
+        <action
+            android:id="@+id/action_imagenFragment_to_palabrasFragment"
+            app:destination="@id/palabrasFragment" />
+    </fragment>
 </navigation>

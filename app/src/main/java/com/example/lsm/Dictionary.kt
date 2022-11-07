@@ -33,7 +33,7 @@ class Dictionary : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        categoriasList.sortBy { it.nombre }
         val adaptercategoria = adapterCat(requireActivity(), categoriasList){
             val bundle = Bundle()
             bundle.putParcelable("categoria",it)
@@ -41,7 +41,7 @@ class Dictionary : Fragment() {
         }
 
         binding.dRecycleView.adapter = adaptercategoria
-        binding.dRecycleView.layoutManager = GridLayoutManager(requireActivity(),2,
+        binding.dRecycleView.layoutManager = GridLayoutManager(requireActivity(),1,
             RecyclerView.VERTICAL,false)
 
     }

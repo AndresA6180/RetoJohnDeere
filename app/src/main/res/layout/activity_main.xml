@@ -23,7 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:openDrawer="start">
+            tools:openDrawer="start"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                     android:name="androidx.navigation.fragment.NavHostFragment"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginTop="1dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -46,8 +48,9 @@
                 <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/appBarLayout"
                     style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:background="#024959"
                     android:fitsSystemWindows="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -77,10 +80,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                android:background="#131112"
+                android:background="#024959"
                 android:visibility="invisible"
                 app:menu="@menu/navigation_drawer"
-                app:subheaderColor="#FFFFFF">
+                app:subheaderColor="#2D2F31">
 
             </com.google.android.material.navigation.NavigationView>
 

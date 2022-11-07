@@ -1,14 +1,14 @@
 package com.example.lsm
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lsm.databinding.ActivityMainBinding
-
 
 
 class MainActivity : AppCompatActivity()   {
@@ -21,12 +21,12 @@ class MainActivity : AppCompatActivity()   {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         //Click listener for menu botton on top bar
-        binding.topAppBar.setOnClickListener(){
+        binding.topAppBar.setNavigationOnClickListener(){
             binding.drawerLayout.openDrawer(Gravity.LEFT)
 
         }
+
 
         //Get navigation host fragment
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerMainActivity) as NavHostFragment
