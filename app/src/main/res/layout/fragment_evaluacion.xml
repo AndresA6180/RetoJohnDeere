@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#131112"
+    android:background="#F1EEDB"
     tools:context=".Evaluacion">
 
 
@@ -28,7 +28,7 @@
                 android:layout_marginTop="48dp"
                 android:text="Evaluación"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/evaluationImage"
@@ -43,7 +43,7 @@
                 android:layout_marginTop="40dp"
                 android:text="Durante la evaluación tendra que escoger la opcion correcta."
                 android:textAlignment="center"
-                android:textColor="@color/drawer_item"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/evaluationImage"
                 app:layout_constraintStart_toStartOf="@+id/evaluationImage"
@@ -57,7 +57,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="40dp"
-                android:backgroundTint="#52C0D1"
+                android:backgroundTint="#F14C27"
                 android:text="Evaluacion"
                 android:textColor="#FFFFFF"
                 android:textColorLink="#FAFAFA"

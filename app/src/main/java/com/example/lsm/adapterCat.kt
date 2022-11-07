@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.lsm.databinding.ItemCategoriaBinding
 
 class adapterCat (var context: Context, var data: List<Categorias>, private val funcionX: (Categorias) ->Unit) : RecyclerView.Adapter<adapterCat.ViewHolder>()     {
@@ -30,6 +31,7 @@ class adapterCat (var context: Context, var data: List<Categorias>, private val 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.binding.apply {
+            Glide.with(context).load(data[position].url_imagen).into(imageView)
             textViewNombre.text = data[position].nombre
         }
 

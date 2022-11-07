@@ -5,5 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PalabrasRV (
-    val nombre: String
+    val nombre: String,
+    val local_video_url: Int?,
 ) : Parcelable

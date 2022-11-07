@@ -7,14 +7,18 @@
     android:background="#F25032"
 
 
-    android:backgroundTint="#BCBCBC"
+    android:backgroundTint="#F1EEDB"
     tools:context=".Dictionary">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dRecycleView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#131112"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:background="#F0EDDA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +30,7 @@
         android:id="@+id/backgroundSearchView"
         android:layout_width="0dp"
         android:layout_height="66dp"
-        android:background="@color/mainColor"
+        android:background="#037E8B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +43,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="#F25032"
-        android:backgroundTint="#C8C8C8"
+        android:backgroundTint="#F1F1F1"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toBottomOf="@+id/backgroundSearchView"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#131112"
-    tools:context=".juegoFragment" >
+    android:background="#F1EEDB"
+    tools:context=".juegoFragment">
 
     <TextView
         android:id="@+id/textView4"
@@ -14,7 +14,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="Practica"
-        android:textColor="#FFFFFF"
+        android:textColor="#124040"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
