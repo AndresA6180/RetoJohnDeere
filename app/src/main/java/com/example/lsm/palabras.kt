@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,12 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lsm.databinding.FragmentPalabrasBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import java.net.URLConnection
+import java.util.Locale.filter
 
 
 class palabras : Fragment() {
     private var _binding: FragmentPalabrasBinding? = null
     private val binding get()  = _binding!!
-
+    private lateinit var adaptercategoria : adapterSubCategorias
+    private  lateinit var categoria : Categorias
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,6 +39,7 @@ class palabras : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPalabrasBinding.inflate(inflater, container, false)
+        binding.searchViewWords.setOnClickListener(View.OnClickListener { binding.searchViewWords.isIconified = false })
 
         // Inflate the layout for this fragment
         return binding.root
@@ -44,7 +48,7 @@ class palabras : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            val categoria = it.get("categoria") as Categorias
+            categoria = it.get("categoria") as Categorias
 
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
@@ -54,7 +58,7 @@ class palabras : Fragment() {
             })
 
             categoria.sub_categoria.sortedBy { it.nombre }
-            val adaptercategoria =
+            adaptercategoria =
                 adapterSubCategorias(requireActivity(), categoria.sub_categoria) {
                     val bundle = Bundle()
                     bundle.putParcelable("palabra", it)
@@ -74,10 +78,38 @@ class palabras : Fragment() {
 
                 }
 
+            binding.searchViewWords.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                android.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(msg: String): Boolean {
+                    filter(msg)
+                    return false
+                }
+            })
+
+
             binding.dRecycleView.addItemDecoration( MaterialDividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL))
             binding.dRecycleView.adapter = adaptercategoria
             binding.dRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 
+        }
+    }
+
+    private fun filter(text: String) {
+        val filteredlist: ArrayList<PalabrasRV> = ArrayList<PalabrasRV>()
+
+        for (item in categoria.sub_categoria) {
+            if (item.nombre.toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item)
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            Toast.makeText(activity, "No se encontraron resultados.", Toast.LENGTH_SHORT).show()
+        } else {
+            adaptercategoria.filterList(filteredlist)
         }
     }
 }

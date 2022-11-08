@@ -41,4 +41,9 @@ class adapterSubCategorias (var context: Context, var data: List<PalabrasRV>, pr
     override fun getItemCount(): Int {
         return data.size
     }
+
+    fun filterList(filterlist: ArrayList<PalabrasRV>) {
+        data = filterlist
+        notifyDataSetChanged()
+    }
 }
