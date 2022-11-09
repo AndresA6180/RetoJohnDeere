@@ -11,7 +11,6 @@ class adapterCat (var context: Context, var data: List<Categorias>, private val 
 
     class ViewHolder (val binding: ItemCategoriaBinding, funcionZ: (Int) -> Unit) : RecyclerView.ViewHolder(binding.root)  {
 
-
         //Registrando el evento de click y retornando una funcion con el indice del elemento
         init {
             itemView.setOnClickListener {
@@ -34,12 +33,16 @@ class adapterCat (var context: Context, var data: List<Categorias>, private val 
             Glide.with(context).load(data[position].url_imagen).into(imageView)
             textViewNombre.text = data[position].nombre
         }
-
-
-
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
+
+
+    fun filterList(filterlist: ArrayList<Categorias>) {
+        data = filterlist
+        notifyDataSetChanged()
+    }
+
 }
