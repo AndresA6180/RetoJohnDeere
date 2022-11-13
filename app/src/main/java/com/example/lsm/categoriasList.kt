@@ -1,7 +1,8 @@
 package com.example.lsm
 
 var categoriasList = mutableListOf(
-
+    //Lista de todas las categorais con su lista de palabras y la imagen que le corresponde a la carta
+    //de cada actividad,
     Categorias("Abecedario", subCategoriasList[0], R.raw.abecedario_cover),
     Categorias("Animales",subCategoriasList[1], R.raw.animales_cover),
     Categorias("Colores",subCategoriasList[2], R.raw.colores_cover),

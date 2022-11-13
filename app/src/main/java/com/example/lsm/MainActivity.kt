@@ -12,30 +12,33 @@ import com.example.lsm.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity()   {
-    //Binding to get all of the ids
+    //Binding para la actividad principal
     lateinit var binding: ActivityMainBinding
-    //Navigation controller
+    //Control de navegacion entre fragments
     lateinit var  navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Click listener for menu botton on top bar
+
+        //Click listener para el boton del menu
         binding.topAppBar.setNavigationOnClickListener(){
+            //Abrir el drawer cuando se pica el boton del menu
             binding.drawerLayout.openDrawer(Gravity.LEFT)
 
         }
 
 
-        //Get navigation host fragment
+        //Obtener el host de fragments
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerMainActivity) as NavHostFragment
-        //Create nav controller
+        //Crear el controll en base al host
         navController = navHostFragment.navController
 
-        //Navigate through the different menu options
+        //Navegar mediante las differentes opciones del drawer
         binding.drawer.setNavigationItemSelectedListener() {
             when (it.itemId) {
+                //En cada uno navegar al fragmento seleccionado y cerrar el drawer
                 R.id.dicionarioMenuItem -> {
                     navController.navigate(R.id.dictionaryFragment)
                     binding.drawerLayout.closeDrawer(Gravity.LEFT)
@@ -70,6 +73,7 @@ class MainActivity : AppCompatActivity()   {
 
     //Create top bar menu when menu is created
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        //Inflar el menu principal
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.mainmenu,menu)
         return true

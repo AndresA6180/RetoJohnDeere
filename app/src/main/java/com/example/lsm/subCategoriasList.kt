@@ -1,5 +1,8 @@
 package com.example.lsm
 
+//Cada una de las categorias tiene una lista de palabras
+//Estas son las listas de las palabras
+//Cada lista de palabra tiene varias palabras y cada una tiene un nombre y su url para el video o la imagen
 var subCategoriasList = mutableListOf(
 
     mutableListOf(PalabrasRV("A",R.raw.a ),PalabrasRV("B",R.raw.b),PalabrasRV("C",R.raw.c),PalabrasRV("D",R.raw.d),

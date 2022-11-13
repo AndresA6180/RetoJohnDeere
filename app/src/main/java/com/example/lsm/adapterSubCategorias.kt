@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lsm.databinding.ItemSubcategoriasBinding
 
+//adaptador de categorias que recibe contexto, lista de palabras y funcionX
 class adapterSubCategorias (var context: Context, var data: List<PalabrasRV>, private val funcionX: (PalabrasRV) ->Unit) : RecyclerView.Adapter<adapterSubCategorias.ViewHolder>()     {
 
     class ViewHolder (val binding: ItemSubcategoriasBinding, funcionZ: (Int) -> Unit) : RecyclerView.ViewHolder(binding.root)  {
@@ -30,7 +31,7 @@ class adapterSubCategorias (var context: Context, var data: List<PalabrasRV>, pr
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.binding.apply {
-
+            //Agregar el texto del nombre de la palabra a la tarjeta en el recycleview
             textViewPalabras.text = data[position].nombre
         }
 
@@ -42,8 +43,11 @@ class adapterSubCategorias (var context: Context, var data: List<PalabrasRV>, pr
         return data.size
     }
 
+    //Filtrar las palabras
     fun filterList(filterlist: ArrayList<PalabrasRV>) {
+        //Recibir lista filtrada y poner la como nuevo source de data
         data = filterlist
+        //Notificar que hubo cambios
         notifyDataSetChanged()
     }
 }

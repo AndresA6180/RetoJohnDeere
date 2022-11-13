@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Colores de cuando se selecciona un objeto dentro del drawer -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:color="@color/black" android:state_selected="true" />
     <item android:color="@color/white" android:state_selected="false"/>
