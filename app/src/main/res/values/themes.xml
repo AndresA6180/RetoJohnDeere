@@ -14,14 +14,14 @@
         <!-- Customize your theme here. -->
         <item name="colorNavigationItem">@color/drawer_item</item>
         <item name="colorNavigationItemSelected">@color/white</item>
-        <item name="drawableNavigationItemBackground">@drawable/drawer_item_background</item>
-        <item name="android:listDivider">@color/white</item>
-        <item name="listPreferredItemHeightSmall">60dp</item><!-- menu item height- vary as u need -->
+        <item name="drawableNavigationItemBackground">@drawable/drawer_item_background</item> <!-- Background del drawer -->
+        <item name="android:listDivider">@color/white</item><!--Divisiones en el drawer -->
+        <item name="listPreferredItemHeightSmall">60dp</item><!-- altura de los objetos del drawer-->
 
     </style>
 
     <!--
-        Colors for the navigation drawer
+       Colores para los objetos del drawer de navegacion
     -->
     <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
         <item name="itemIconTint">?attr/colorNavigationItem</item>

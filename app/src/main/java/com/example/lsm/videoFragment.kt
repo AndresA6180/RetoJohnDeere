@@ -27,8 +27,6 @@ class videoFragment : Fragment() {
 
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,41 +40,54 @@ class videoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Crear el control de media
         val mediaController = MediaController(context)
+        //Poner el videoView a ese control
         mediaController.setAnchorView(binding.videoViewPalabra)
 
+        //Recibir el bundle que se mando
         arguments?.let {
+            //Cambiar la palabra a su objeto
             val palabra = it.get("palabra") as PalabrasRV
 
+            //Sacar el id del video
             val video_id = palabra.local_video_url
 
+            //Guardar la categoria de donde viene en un bundle por si se quiere regresar el usuario
             val categoria = it.get("categoria") as Categorias
             val bundle = Bundle()
             bundle.putParcelable("categoria", categoria)
 
+            //Si el usuario se quiere regresar
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
+                    //Regresar del fragmento de video al fragmento de palabras con la categoria en el bundle
                     Navigation.findNavController(view).navigate(com.example.lsm.R.id.action_videoFragment_to_palabrasFragment, bundle)
                 }
             })
 
+            //Si el video no es nulo
             if (video_id != null) {
-
+                //Construir el URI
                 val offlineUrl = Uri.parse("android.resource://${requireContext().packageName}/${video_id}")
 
 
+                //Set del titulo y del video en el fragmento
                 binding.tituloVideo.text = palabra.nombre
                 binding.videoViewPalabra.setMediaController(mediaController)
                 binding.videoViewPalabra.setVideoURI(offlineUrl)
+                //Empezar el video
                 binding.videoViewPalabra.start()
 
             } else {
+                //Si esta vacio entonces decir que el video no esta disponible
                 binding.videoViewPalabra.isVisible = false
 
                 Toast.makeText(context, "VIDEO NO DISPONIBLE", Toast.LENGTH_SHORT).show()
 
             }
 
+            //Si se selecciona el boton entonces se reproduce el video otra vez
             binding.button4.setOnClickListener(){
                 binding.videoViewPalabra.start()
             }

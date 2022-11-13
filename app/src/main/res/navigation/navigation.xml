@@ -5,6 +5,8 @@
     android:id="@+id/navigation"
     app:startDestination="@id/dictionaryFragment">
 
+    <!--Grafo de navegacion -->
+
     <fragment
         android:id="@+id/dictionaryFragment"
         android:name="com.example.lsm.Dictionary"
