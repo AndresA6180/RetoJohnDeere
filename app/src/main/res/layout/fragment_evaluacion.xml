@@ -58,7 +58,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="40dp"
                 android:backgroundTint="#F14C27"
-                android:text="Evaluacion"
+                android:text="Comenzar"
                 android:textColor="#FFFFFF"
                 android:textColorLink="#FAFAFA"
                 app:layout_constraintBottom_toBottomOf="parent"
