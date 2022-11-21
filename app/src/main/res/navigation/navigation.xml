@@ -35,7 +35,11 @@
         android:id="@+id/loginFragment"
         android:name="com.example.lsm.login"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_dictionaryFragment"
+            app:destination="@id/dictionaryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/evaluacionFragment"
         android:name="com.example.lsm.Evaluacion"
@@ -54,7 +58,11 @@
         android:id="@+id/juegoFragment"
         android:name="com.example.lsm.juegoFragment"
         android:label="fragment_juego"
-        tools:layout="@layout/fragment_juego" />
+        tools:layout="@layout/fragment_juego" >
+        <action
+            android:id="@+id/action_juegoFragment_to_preguntasFragment"
+            app:destination="@id/preguntasFragment" />
+    </fragment>
     <fragment
         android:id="@+id/preguntasFragment"
         android:name="com.example.lsm.preguntasFragment"
@@ -78,4 +86,9 @@
             android:id="@+id/action_imagenFragment_to_palabrasFragment"
             app:destination="@id/palabrasFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.lsm.profileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

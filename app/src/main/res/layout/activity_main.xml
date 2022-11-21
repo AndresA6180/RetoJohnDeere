@@ -58,6 +58,7 @@
 
                     <com.google.android.material.appbar.MaterialToolbar
                         android:id="@+id/topAppBar"
+                        app:menu="@menu/mainmenu"
                         style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
@@ -77,6 +78,7 @@
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/drawer"
                 style="@style/Widget.Custom.NavigationView"
+                app:headerLayout="@layout/headerdrawerlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"

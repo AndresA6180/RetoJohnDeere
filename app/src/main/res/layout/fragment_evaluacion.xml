@@ -25,28 +25,29 @@
                 android:id="@+id/evaluationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="80dp"
                 android:text="Evaluación"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="24sp"
+                android:textSize="48sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/evaluationImage"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/evaluationImage"
-                app:layout_constraintTop_toBottomOf="@+id/evaluationImage" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/evaluationMainBodyText"
-                android:layout_width="286dp"
-                android:layout_height="71dp"
-                android:layout_marginTop="40dp"
-                android:text="Durante la evaluación tendra que escoger la opcion correcta."
+                android:layout_width="276dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:lineSpacingExtra="3sp"
+                android:text="Durante la evaluación tendra que escoger la opcion correcta. Al final de la evaluación se le indicara si aprobo esta evaluación o no."
                 android:textAlignment="center"
+                android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/evaluationImage"
-                app:layout_constraintStart_toStartOf="@+id/evaluationImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/evaluationTitle" />
 
             <Button
@@ -54,7 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_height="63dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="120dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="40dp"
                 android:backgroundTint="#F14C27"
@@ -66,17 +67,6 @@
                 app:layout_constraintStart_toStartOf="@+id/evaluationMainBodyText"
                 app:layout_constraintTop_toBottomOf="@+id/evaluationMainBodyText" />
 
-            <ImageView
-                android:id="@+id/evaluationImage"
-                android:layout_width="243dp"
-                android:layout_height="201dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/quiz" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

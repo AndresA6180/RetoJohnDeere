@@ -40,7 +40,9 @@ class juegoFragment : Fragment() {
             //Poner en un bundle la categoria para poder navegar despues a lo que viene siendo
             //la evaluacion con la categoria
             val bundle = Bundle()
-            bundle.putParcelable("categoria",it)
+            bundle.putBoolean("boolean",false)
+            bundle.putInt("categoria", categoriasList.indexOf(it))
+            Navigation.findNavController(view).navigate(R.id.action_juegoFragment_to_preguntasFragment,bundle)
         }
 
         //Poner al recycleView el adaptador
