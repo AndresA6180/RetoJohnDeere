@@ -1,21 +1,19 @@
 package com.example.lsm
 
+import android.app.*
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lsm.databinding.ActivityMainBinding
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.io.File.separator
+import java.util.*
 
 
 class MainActivity : AppCompatActivity()   {
@@ -25,7 +23,18 @@ class MainActivity : AppCompatActivity()   {
     //Control de navegacion entre fragments
     lateinit var  navController: NavController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val alarmManager = this.getSystemService(ALARM_SERVICE) as AlarmManager
+        val alarmPendingIntent by lazy {
+            val intent = Intent(this, AlarmReceiver::class.java)
+            PendingIntent.getBroadcast(this, 0, intent, 0)
+        }
+        val HOUR_TO_SHOW_PUSH = 8
+
+        schedulePushNotifications(alarmManager,alarmPendingIntent,HOUR_TO_SHOW_PUSH)
+
         //Hacer que los datos sean persistentes. Si no hay conexion a internet
         //los datos que se mandan a la base de datos se guardan localmente hasta
         //que haya una conexion a internet
@@ -130,22 +139,53 @@ class MainActivity : AppCompatActivity()   {
                     binding.drawerLayout.closeDrawer(Gravity.LEFT)
                     true
                 }
+
                 R.id.evaluacionMenuItem -> {
                     navController.navigate(R.id.evaluacionFragment)
                     binding.drawerLayout.closeDrawer(Gravity.LEFT)
                     true
                 }
-                R.id.preferenciasMenuItem -> {
-                    navController.navigate(R.id.preferencesFragment)
+
+                R.id.buscadorMenuItem -> {
+                    navController.navigate(R.id.buscadorFragment)
                     binding.drawerLayout.closeDrawer(Gravity.LEFT)
                     true
                 }
+
                 else -> false
             }
         }
 
 
     }
+
+    fun schedulePushNotifications(
+        alarmManager: AlarmManager,
+        alarmPendingIntent: PendingIntent,
+        HOUR_TO_SHOW_PUSH: Int
+    ) {
+        val calendar = GregorianCalendar.getInstance().apply {
+            if (get(Calendar.HOUR_OF_DAY) >= HOUR_TO_SHOW_PUSH) {
+                add(Calendar.DAY_OF_MONTH, 1)
+            }
+            set(Calendar.HOUR_OF_DAY, HOUR_TO_SHOW_PUSH)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+
+        val calendarInterval = GregorianCalendar.getInstance().apply {
+            set(Calendar.HOUR, 96)
+        }
+
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            calendarInterval.timeInMillis,
+            alarmPendingIntent
+        )
+    }
+
 
 
     //Create top bar menu when menu is created

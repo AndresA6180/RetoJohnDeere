@@ -11,6 +11,11 @@ android:title=" ">
         />
 
     <item
+        android:id="@+id/buscadorMenuItem"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Buscador" />
+
+    <item
         android:id="@+id/juegoMenuItem"
         android:icon="@drawable/videojuego"
         android:title="Juego" />
@@ -35,10 +40,7 @@ android:title=" "
     >
 <menu>
 
-    <item
-        android:id="@+id/preferenciasMenuItem"
-        android:icon="@drawable/settings"
-        android:title="Preferencias" />
+
 
     <item
         android:id="@+id/SignOut"

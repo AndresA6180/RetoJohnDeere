@@ -55,8 +55,15 @@ class imagenFragment : Fragment() {
             //Cuando se presiona el boton para regresar en el sistema de android
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    //Navegar a la vista de categoria con la categoria donde proviene la palabra actual
-                    Navigation.findNavController(view).navigate(com.example.lsm.R.id.action_imagenFragment_to_palabrasFragment, bundle)
+                    if(categoria.nombre != "buscador") {
+                        //Navegar a la vista de categoria con la categoria donde proviene la palabra actual
+                        Navigation.findNavController(view).navigate(
+                            com.example.lsm.R.id.action_imagenFragment_to_palabrasFragment,
+                            bundle
+                        )
+                    } else {
+                        Navigation.findNavController(view).navigate(R.id.action_imagenFragment_to_buscadorFragment)
+                    }
                 }
             })
         }

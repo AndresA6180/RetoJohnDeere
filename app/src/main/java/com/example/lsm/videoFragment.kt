@@ -61,8 +61,13 @@ class videoFragment : Fragment() {
             //Si el usuario se quiere regresar
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    //Regresar del fragmento de video al fragmento de palabras con la categoria en el bundle
-                    Navigation.findNavController(view).navigate(com.example.lsm.R.id.action_videoFragment_to_palabrasFragment, bundle)
+                    if(categoria.nombre != "buscador") {
+                        //Regresar del fragmento de video al fragmento de palabras con la categoria en el bundle
+                        Navigation.findNavController(view).navigate(com.example.lsm.R.id.action_videoFragment_to_palabrasFragment, bundle)
+                    } else {
+                        Navigation.findNavController(view).navigate(R.id.action_videoFragment_to_buscadorFragment)
+                    }
+
                 }
             })
 
