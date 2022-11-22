@@ -8,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.lsm.databinding.FragmentLoginBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.FirebaseError
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 
 class login : Fragment() {
@@ -47,8 +43,11 @@ class login : Fragment() {
                     if (snapshot.exists()) {
                         for (dataSnapshot in snapshot.children) {
                             //Obtener la password para el usuario
+                            var administrador : Boolean = false
                             val ps = dataSnapshot.child("password").value
-
+                            if(dataSnapshot.child("administrador").exists()){
+                                administrador = dataSnapshot.child("administrador").value as Boolean
+                            }
                             //Validar que el password ingresado y el del usuario sean los mismos
                             if(ps == password){
                                 //Guardar el login del usuario
@@ -56,19 +55,29 @@ class login : Fragment() {
                                 with(sharedPref.edit()) {
                                     putString("username",nombre)
                                     putString("password",password)
+                                    putBoolean("administrador", administrador)
                                     apply()
                                 }
-                                //Habilitar las evaluaciones y opcion para sign out
-                                val mainActivity = requireActivity() as MainActivity
-                                mainActivity.bind.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = true;
-                                mainActivity.bind.drawer.menu.findItem(R.id.SignOut).isVisible = true
-                                mainActivity.bind.topAppBar.menu.findItem(R.id.loginMenuItem).setIcon(R.drawable.ic_baseline_account_circle_24)
+                                if(administrador == false) {
+                                    //Habilitar las evaluaciones y opcion para sign out
+                                    val mainActivity = requireActivity() as MainActivity
+                                    mainActivity.bind.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = true;
+                                    mainActivity.bind.drawer.menu.findItem(R.id.SignOut).isVisible = true
+                                    mainActivity.bind.topAppBar.menu.findItem(R.id.loginMenuItem)
+                                        .setIcon(R.drawable.ic_baseline_account_circle_24)
 
-                                //Mensaje que login fue completado
-                                MaterialAlertDialogBuilder(requireActivity()).setTitle("Login").setMessage("Ha realizado el login con exito.").setNegativeButton("Ok"){
-                                        dialog, which ->
-                                    findNavController().navigate(R.id.profileFragment)
-                                }.show()
+                                    //Mensaje que login fue completado
+                                    MaterialAlertDialogBuilder(requireActivity()).setTitle("Login")
+                                        .setMessage("Ha realizado el login con exito.")
+                                        .setNegativeButton("Ok") { dialog, which ->
+                                            findNavController().navigate(R.id.profileFragment)
+                                        }.show()
+                                } else {
+                                    val mainActivity = requireActivity() as MainActivity
+                                    mainActivity.bind.drawer.menu.findItem(R.id.SignOut).isVisible = true
+                                    mainActivity.bind.topAppBar.menu.findItem(R.id.loginMenuItem).setIcon(R.drawable.data)
+                                    findNavController().navigate(R.id.reporteFragment2)
+                                }
 
                             } else {
                                 //Si no es la misma contraseña

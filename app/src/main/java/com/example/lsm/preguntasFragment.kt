@@ -211,7 +211,11 @@ class preguntasFragment : Fragment() {
                 }
                 MaterialAlertDialogBuilder(requireActivity()).setTitle("Resultados").setMessage("Ha aprobado la evaluacion").setNegativeButton("Continuar"){
                         dialog, which ->
-                    findNavController().navigate(R.id.evaluacionFragment)
+                    if(practicaOEvaluacion == false){
+                        findNavController().navigate(R.id.juegoFragment)
+                    } else {
+                        findNavController().navigate(R.id.evaluacionFragment)
+                    }
                 }.show()
 
                 return
@@ -219,7 +223,11 @@ class preguntasFragment : Fragment() {
             } else {
                 MaterialAlertDialogBuilder(requireActivity()).setTitle("Resultados").setMessage("No aprobado la evaluacion").setNegativeButton("Continuar"){
                         dialog, which ->
-                    findNavController().navigate(R.id.evaluacionFragment)
+                    if(practicaOEvaluacion == false){
+                        findNavController().navigate(R.id.juegoFragment)
+                    } else {
+                        findNavController().navigate(R.id.evaluacionFragment)
+                    }
                 }.show()
                 return
             }

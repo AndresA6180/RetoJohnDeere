@@ -109,4 +109,9 @@
             android:id="@+id/action_buscadorFragment_to_imagenFragment"
             app:destination="@id/imagenFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/reporteFragment2"
+        android:name="com.example.lsm.reporteFragment"
+        android:label="fragment_reporte"
+        tools:layout="@layout/fragment_reporte" />
 </navigation>

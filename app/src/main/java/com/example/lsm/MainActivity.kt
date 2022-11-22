@@ -1,5 +1,7 @@
 package com.example.lsm
 
+import android.R.attr.left
+import android.R.attr.right
 import android.app.*
 import android.content.Context
 import android.content.Intent
@@ -11,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lsm.databinding.ActivityMainBinding
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import java.util.*
 
 
@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity()   {
 
         schedulePushNotifications(alarmManager,alarmPendingIntent,HOUR_TO_SHOW_PUSH)
 
-        //Hacer que los datos sean persistentes. Si no hay conexion a internet
-        //los datos que se mandan a la base de datos se guardan localmente hasta
-        //que haya una conexion a internet
-        Firebase.database.setPersistenceEnabled(true)
-
         super.onCreate(savedInstanceState)
 
         //Inflar la vista
@@ -56,10 +51,6 @@ class MainActivity : AppCompatActivity()   {
 
         //Obtener los datos guardados en el dispositivo
         val sharedPref  = this.getPreferences(Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            remove("categoriaActual")
-            apply()
-        }
 
 
         if(!sharedPref.contains("categoriaActual")) {
@@ -71,15 +62,21 @@ class MainActivity : AppCompatActivity()   {
 
         //Ver si hay un usuario ya en login para ver si las evaluaciones estan disponibles o no
         if(sharedPref.contains("username") && sharedPref.contains("password") ){
-            binding.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = true;
-            binding.drawer.menu.findItem(R.id.SignOut).isVisible = true;
-            binding.topAppBar.menu.findItem(R.id.loginMenuItem).setIcon(R.drawable.ic_baseline_account_circle_24)
+            if(sharedPref.getBoolean("administrador", false)){
+                binding.drawer.menu.findItem(R.id.SignOut).isVisible = true;
+                binding.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = false;
+                binding.topAppBar.menu.findItem(R.id.loginMenuItem).setIcon(R.drawable.data)
+
+            } else {
+                binding.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = true;
+                binding.drawer.menu.findItem(R.id.SignOut).isVisible = true;
+                binding.topAppBar.menu.findItem(R.id.loginMenuItem).setIcon(R.drawable.ic_baseline_account_circle_24)
+                binding.drawerLayout.isEnabled = true
+            }
         } else {
             binding.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = false;
             binding.drawer.menu.findItem(R.id.SignOut).isVisible = false;
             binding.topAppBar.menu.findItem(R.id.loginMenuItem).setIcon(R.drawable.login)
-
-
         }
 
         //En menu el icono para hacer un login
@@ -87,7 +84,11 @@ class MainActivity : AppCompatActivity()   {
             when(menuItem.itemId){
                 R.id.loginMenuItem -> {
                     if(sharedPref.contains("username") && sharedPref.contains("password") ) {
-                        navController.navigate(R.id.profileFragment)
+                        if(sharedPref.getBoolean("administrador", false)){
+                            navController.navigate(R.id.reporteFragment2)
+                        } else {
+                            navController.navigate(R.id.profileFragment)
+                        }
                     } else {
                         //Navegar a la pagina de login
                         navController.navigate(R.id.loginFragment)
@@ -121,6 +122,7 @@ class MainActivity : AppCompatActivity()   {
                     with(sharedPref.edit()) {
                         remove("username")
                         remove("password")
+                        remove("administrador")
                         apply()
                     }
 
