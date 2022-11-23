@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lsm.databinding.ActivityMainBinding
@@ -36,6 +37,9 @@ class MainActivity : AppCompatActivity()   {
         schedulePushNotifications(alarmManager,alarmPendingIntent,HOUR_TO_SHOW_PUSH)
 
         super.onCreate(savedInstanceState)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 
         //Inflar la vista
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -111,7 +115,6 @@ class MainActivity : AppCompatActivity()   {
                 //En cada uno navegar al fragmento seleccionado y cerrar el drawer
                 R.id.dicionarioMenuItem -> {
                     navController.navigate(R.id.dictionaryFragment)
-                    binding.drawerLayout.closeDrawer(Gravity.LEFT)
                     true
                 }
 
@@ -150,7 +153,6 @@ class MainActivity : AppCompatActivity()   {
 
                 R.id.buscadorMenuItem -> {
                     navController.navigate(R.id.buscadorFragment)
-                    binding.drawerLayout.closeDrawer(Gravity.LEFT)
                     true
                 }
 

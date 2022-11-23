@@ -1,20 +1,20 @@
 package com.example.lsm
 
-import android.R.attr.left
-import android.R.attr.right
 import android.app.ActionBar.LayoutParams
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.lsm.databinding.FragmentReporteBinding
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 import com.google.firebase.database.*
 
 
@@ -25,6 +25,13 @@ class reporteFragment : Fragment() {
     lateinit var database : DatabaseReference
     lateinit var databaseUsuarios : DatabaseReference
     var listaTotalUsuarios = emptyList<String>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 200L
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -189,8 +196,10 @@ class reporteFragment : Fragment() {
                                 v6.setBackgroundColor(Color.BLACK);
                                 tbrow.addView(v6)
 
-                                val t3v = Button(requireActivity())
-                                t3v.setBackgroundColor(resources.getColor(R.color.Highlight))
+                                val t3v = MaterialButton(ContextThemeWrapper(requireActivity(), com.google.android.material.R.style.Widget_Material3_Button_OutlinedButton))
+                                t3v.setBackgroundColor(resources.getColor(R.color.Fondo))
+                                t3v.strokeWidth = 2
+                                t3v.setStrokeColorResource(R.color.Highlight)
                                 val params3 = TableRow.LayoutParams(
                                     TableRow.LayoutParams.WRAP_CONTENT,
                                     TableRow.LayoutParams.WRAP_CONTENT
@@ -200,6 +209,10 @@ class reporteFragment : Fragment() {
                                 t3v.text = "Ver"
                                 t3v.setOnClickListener {
                                     val dialog = Dialog(requireActivity())
+                                    val materialFade = MaterialFade().apply {
+                                        duration = 150L
+                                    }
+
                                     dialog.setContentView(R.layout.dialog)
                                     var lista : ListView = dialog.findViewById(R.id.List) as ListView
                                     arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, listaUsuarios)
@@ -223,8 +236,10 @@ class reporteFragment : Fragment() {
                                 v7.setBackgroundColor(Color.BLACK);
                                 tbrow.addView(v7)
 
-                                val t4v = Button(requireActivity())
-                                t4v.setBackgroundColor(resources.getColor(R.color.Highlight))
+                                val t4v = MaterialButton(ContextThemeWrapper(requireActivity(), com.google.android.material.R.style.Widget_Material3_Button_OutlinedButton))
+                                t4v.setBackgroundColor(resources.getColor(R.color.Fondo))
+                                t4v.setStrokeColorResource(R.color.Highlight)
+                                t4v.strokeWidth = 2
                                 val params4 = TableRow.LayoutParams(
                                     TableRow.LayoutParams.WRAP_CONTENT,
                                     TableRow.LayoutParams.WRAP_CONTENT

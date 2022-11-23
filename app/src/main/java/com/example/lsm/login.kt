@@ -3,6 +3,7 @@ package com.example.lsm
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.lsm.databinding.FragmentLoginBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 import com.google.firebase.database.*
 
 
@@ -19,6 +22,13 @@ class login : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get()  = _binding!!
     lateinit var database : DatabaseReference
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 200L
+        }
+    }
 
 
     override fun onCreateView(

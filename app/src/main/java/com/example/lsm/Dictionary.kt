@@ -1,6 +1,7 @@
 package com.example.lsm
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lsm.databinding.FragmentDictionaryBinding
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 import java.util.Locale.filter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,6 +37,10 @@ class Dictionary : Fragment() {
     ): View? {
         _binding = FragmentDictionaryBinding.inflate(inflater, container, false)
 
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }
+
         //Configurar para que el searchview pueda ser accesado en cualquier parte en vez de que solo se pueda abrir por el icono
         binding.searchViewDictionary.setOnClickListener(View.OnClickListener { binding.searchViewDictionary.isIconified = false })
 
@@ -41,6 +50,8 @@ class Dictionary : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.bind.drawerLayout.closeDrawer(Gravity.LEFT)
         //Hacer que toda la lista de categorias este organizada
         categoriasList.sortBy { it.nombre }
         //Poner el adaptador con el contexto y la lista organizada

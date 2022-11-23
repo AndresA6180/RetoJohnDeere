@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Vibrator
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.lsm.databinding.FragmentPreguntasBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 import com.google.firebase.database.*
 
 
@@ -43,8 +46,9 @@ class preguntasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPreguntasBinding.inflate(inflater, container, false)
-
-        // Inflate the layout for this fragment
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }        // Inflate the layout for this fragment
         return binding.root
     }
 

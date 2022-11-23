@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#131112"
+    android:background="@color/Fondo"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,8 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:openDrawer="start"
-            >
+            tools:openDrawer="start">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -36,7 +35,6 @@
                     android:name="androidx.navigation.fragment.NavHostFragment"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="1dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -58,12 +56,12 @@
 
                     <com.google.android.material.appbar.MaterialToolbar
                         android:id="@+id/topAppBar"
-                        app:menu="@menu/mainmenu"
                         style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
+                        android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:elevation="0dp"
+                        app:menu="@menu/mainmenu"
                         app:navigationIcon="@drawable/ic_baseline_menu_24"
                         app:title="@string/page_title"
                         app:titleTextColor="#FFFFFF" />
@@ -78,12 +76,12 @@
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/drawer"
                 style="@style/Widget.Custom.NavigationView"
-                app:headerLayout="@layout/headerdrawerlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:background="#024959"
                 android:visibility="invisible"
+                app:headerLayout="@layout/headerdrawerlayout"
                 app:menu="@menu/navigation_drawer"
                 app:subheaderColor="#2D2F31">
 

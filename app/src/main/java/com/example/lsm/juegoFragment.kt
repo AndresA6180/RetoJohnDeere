@@ -1,6 +1,7 @@
 package com.example.lsm
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lsm.databinding.FragmentDictionaryBinding
 import com.example.lsm.databinding.FragmentJuegoBinding
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 import java.util.Locale.filter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,11 +31,15 @@ class juegoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentJuegoBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }        // Inflate the layout for this fragment
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.bind.drawerLayout.closeDrawer(Gravity.LEFT)
         //Ordenar la lista de categorias
         categoriasList.sortBy { it.nombre }
         //Crear adaptador para el juego

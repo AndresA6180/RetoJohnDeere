@@ -1,6 +1,8 @@
 package com.example.lsm
 
 import android.os.Bundle
+import android.transition.TransitionManager
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lsm.databinding.FragmentBuscadorBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 
 
 class buscadorFragment : Fragment() {
@@ -23,7 +28,9 @@ class buscadorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentBuscadorBinding.inflate(inflater, container, false)
-
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }
         //Configurar para que el searchview pueda ser accesado en cualquier parte en vez de que solo se pueda abrir por el icono
         binding.searchViewBuscadorPalabras.setOnClickListener(View.OnClickListener { binding.searchViewBuscadorPalabras.isIconified = false })
 
@@ -35,6 +42,8 @@ class buscadorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.bind.drawerLayout.closeDrawer(Gravity.LEFT)
 
         var listaCompletaPalabras : List<PalabrasRV> = emptyList()
 
