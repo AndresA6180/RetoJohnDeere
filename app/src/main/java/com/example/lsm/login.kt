@@ -53,10 +53,10 @@ class login : Fragment() {
                     if (snapshot.exists()) {
                         for (dataSnapshot in snapshot.children) {
                             //Obtener la password para el usuario
-                            var administrador : Boolean = false
+                            var admin : Boolean = false
                             val ps = dataSnapshot.child("password").value
-                            if(dataSnapshot.child("administrador").exists()){
-                                administrador = dataSnapshot.child("administrador").value as Boolean
+                            if(dataSnapshot.child("admin").exists()){
+                                admin = dataSnapshot.child("admin").value as Boolean
                             }
                             //Validar que el password ingresado y el del usuario sean los mismos
                             if(ps == password){
@@ -65,10 +65,10 @@ class login : Fragment() {
                                 with(sharedPref.edit()) {
                                     putString("username",nombre)
                                     putString("password",password)
-                                    putBoolean("administrador", administrador)
+                                    putBoolean("admin", admin)
                                     apply()
                                 }
-                                if(administrador == false) {
+                                if(admin == false) {
                                     //Habilitar las evaluaciones y opcion para sign out
                                     val mainActivity = requireActivity() as MainActivity
                                     mainActivity.bind.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = true;

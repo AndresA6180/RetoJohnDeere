@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lsm.databinding.ActivityMainBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity()   {
     val bind get() = binding!!
     //Control de navegacion entre fragments
     lateinit var  navController: NavController
+    lateinit var databaseCategorias : DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +55,8 @@ class MainActivity : AppCompatActivity()   {
         }
 
 
-
         //Obtener los datos guardados en el dispositivo
         val sharedPref  = this.getPreferences(Context.MODE_PRIVATE)
-
 
         if(!sharedPref.contains("categoriaActual")) {
             with(sharedPref.edit()) {
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity()   {
 
         //Ver si hay un usuario ya en login para ver si las evaluaciones estan disponibles o no
         if(sharedPref.contains("username") && sharedPref.contains("password") ){
-            if(sharedPref.getBoolean("administrador", false)){
+            if(sharedPref.getBoolean("admin", false)){
                 binding.drawer.menu.findItem(R.id.SignOut).isVisible = true;
                 binding.drawer.menu.findItem(R.id.evaluacionMenuItem).isVisible = false;
                 binding.topAppBar.menu.findItem(R.id.loginMenuItem).setIcon(R.drawable.data)
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity()   {
             when(menuItem.itemId){
                 R.id.loginMenuItem -> {
                     if(sharedPref.contains("username") && sharedPref.contains("password") ) {
-                        if(sharedPref.getBoolean("administrador", false)){
+                        if(sharedPref.getBoolean("admin", false)){
                             navController.navigate(R.id.reporteFragment2)
                         } else {
                             navController.navigate(R.id.profileFragment)
@@ -125,7 +126,7 @@ class MainActivity : AppCompatActivity()   {
                     with(sharedPref.edit()) {
                         remove("username")
                         remove("password")
-                        remove("administrador")
+                        remove("admin")
                         apply()
                     }
 
