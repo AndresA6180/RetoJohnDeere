@@ -2,6 +2,7 @@ package com.example.lsm
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.example.lsm.databinding.FragmentImagenBinding
 import com.example.lsm.databinding.FragmentVideoBinding
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 
 //Fragmento para enseñar las imagenes del diccionario
 class imagenFragment : Fragment() {
@@ -27,8 +30,9 @@ class imagenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentImagenBinding.inflate(inflater, container, false)
-
-        // Inflate the layout for this fragment
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -55,8 +59,15 @@ class imagenFragment : Fragment() {
             //Cuando se presiona el boton para regresar en el sistema de android
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    //Navegar a la vista de categoria con la categoria donde proviene la palabra actual
-                    Navigation.findNavController(view).navigate(com.example.lsm.R.id.action_imagenFragment_to_palabrasFragment, bundle)
+                    if(categoria.nombre != "buscador") {
+                        //Navegar a la vista de categoria con la categoria donde proviene la palabra actual
+                        Navigation.findNavController(view).navigate(
+                            com.example.lsm.R.id.action_imagenFragment_to_palabrasFragment,
+                            bundle
+                        )
+                    } else {
+                        Navigation.findNavController(view).navigate(R.id.action_imagenFragment_to_buscadorFragment)
+                    }
                 }
             })
         }

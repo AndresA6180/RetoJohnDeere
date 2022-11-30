@@ -1,6 +1,7 @@
 package com.example.lsm
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lsm.databinding.FragmentDictionaryBinding
 import com.example.lsm.databinding.FragmentJuegoBinding
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 import java.util.Locale.filter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,11 +31,15 @@ class juegoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentJuegoBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }        // Inflate the layout for this fragment
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.bind.drawerLayout.closeDrawer(Gravity.LEFT)
         //Ordenar la lista de categorias
         categoriasList.sortBy { it.nombre }
         //Crear adaptador para el juego
@@ -40,7 +47,9 @@ class juegoFragment : Fragment() {
             //Poner en un bundle la categoria para poder navegar despues a lo que viene siendo
             //la evaluacion con la categoria
             val bundle = Bundle()
-            bundle.putParcelable("categoria",it)
+            bundle.putBoolean("boolean",false)
+            bundle.putInt("categoria", categoriasList.indexOf(it))
+            Navigation.findNavController(view).navigate(R.id.action_juegoFragment_to_preguntasFragment,bundle)
         }
 
         //Poner al recycleView el adaptador

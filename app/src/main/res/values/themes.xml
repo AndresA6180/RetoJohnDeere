@@ -17,9 +17,19 @@
         <item name="drawableNavigationItemBackground">@drawable/drawer_item_background</item> <!-- Background del drawer -->
         <item name="android:listDivider">@color/white</item><!--Divisiones en el drawer -->
         <item name="listPreferredItemHeightSmall">60dp</item><!-- altura de los objetos del drawer-->
-
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
     </style>
 
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/Highlight</item>
+        <item name="colorSecondary">@color/Highlight</item>
+        <item name="colorSurface">@color/white </item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.App.Button</item>
+    </style>
     <!--
        Colores para los objetos del drawer de navegacion
     -->

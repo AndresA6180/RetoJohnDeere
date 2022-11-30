@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import com.bumptech.glide.Glide
 import com.example.lsm.databinding.ActivityMainBinding
 import com.example.lsm.databinding.FragmentEvaluacionBinding
 
@@ -22,7 +23,10 @@ class Evaluacion : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEvaluacionBinding.inflate(inflater,container,false)
-        binding.evaluacionButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.preguntasFragment, null))
+        val bundle = Bundle()
+        bundle.putBoolean("boolean",true)
+        bundle.putInt("categoria", 0)
+        binding.evaluacionButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.preguntasFragment, bundle))
 
         // Inflate the layout for this fragment
         return binding.root

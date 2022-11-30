@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.lsm.databinding.FragmentVideoBinding
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.SlideDistanceProvider
 
 
 class videoFragment : Fragment() {
@@ -25,6 +28,9 @@ class videoFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }
     }
 
     override fun onCreateView(
@@ -61,8 +67,13 @@ class videoFragment : Fragment() {
             //Si el usuario se quiere regresar
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    //Regresar del fragmento de video al fragmento de palabras con la categoria en el bundle
-                    Navigation.findNavController(view).navigate(com.example.lsm.R.id.action_videoFragment_to_palabrasFragment, bundle)
+                    if(categoria.nombre != "buscador") {
+                        //Regresar del fragmento de video al fragmento de palabras con la categoria en el bundle
+                        Navigation.findNavController(view).navigate(com.example.lsm.R.id.action_videoFragment_to_palabrasFragment, bundle)
+                    } else {
+                        Navigation.findNavController(view).navigate(R.id.action_videoFragment_to_buscadorFragment)
+                    }
+
                 }
             })
 

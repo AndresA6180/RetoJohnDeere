@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lsm.databinding.FragmentPalabrasBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.transition.MaterialFadeThrough
 import java.net.URLConnection
 import java.util.Locale.filter
 
@@ -41,7 +42,9 @@ class palabras : Fragment() {
         _binding = FragmentPalabrasBinding.inflate(inflater, container, false)
         //Hacer que searchview no solo se tenga que picar en el icono si no que toda la barra sea util
         binding.searchViewWords.setOnClickListener(View.OnClickListener { binding.searchViewWords.isIconified = false })
-
+        enterTransition = MaterialFadeThrough().apply {
+            duration = 500L
+        }
         // Inflate the layout for this fragment
         return binding.root
     }
